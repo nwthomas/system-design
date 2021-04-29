@@ -6,7 +6,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
 
 ## TABLE OF CONTENTS
 
-- [Step-by-Step Guide](./GUIDE.md)
+- [Step-by-Step Guide](./guide.md)
 - [Questions](./questions/)
   1. URL Shortener (COMING SOON)
 
