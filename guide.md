@@ -1,3 +1,5 @@
+[<-- HOME](../README.md)
+
 # STEP-BY-STEP GUIDE 🗺
 
 Many software engineers struggle with system design interviews (SDIs). This is due to the vague nature inherent to them; they are unstructured, most people don't have experience designing large scale distrubuted systems, and people just flat-out don't spend enought time preparing for them.
@@ -70,6 +72,34 @@ Also, what database and type (NoSQL or SQL) should we use? Will NoSQL like a Mon
 
 ## STEP 5: MAKE THE META-LEVEL DESIGN
 
+We want to diagram out the high-level of our system with a few blocks that demonstrate the core building blocks of our system. This should solve the problem from end-to-end without getting into the weeds.
+
+For instance, the company we've been talking about in previous sections will need multiple application servers to serve all the read/write requests with load balancers in front of them for even traffic distribution.
+
+If we need a lot more read traffic than writing, we'll want to have different servers handle those cases. We want a back-end that has an efficient database that can store all the posts and support a _massive_ number of reads. We will also need a distrubted file storage system for any media that users want to save.
+
+![Demo System](./assets/demo-system.png)
+
 ## STEP 6: DETAILED DESIGN
 
+You will probably have time to dig into one or three major areas of the system design. This will revolve around the interviewer's preference. You should present different options to the interviewer, each with their pros and cons. Remember, there isn't a single correct answer - Like life, system design has many correct options that could work. It's up to you to point out the pros and cons and then work with the interviewer to move forward on one. Consider the tradeoffs carefully.
+
+- If we're storing massive amounts of data, how should we partition our data to distribute it to multiple databases? Should we store all of the data for a single user in the same database? What problems could we have here?
+- How will we handle hot users who user our service a lot in a content creator role?
+- If the home timeline for users will have recent/relevant posts, should we store our data so that it is optimized for scanning the latest posts?
+- How much and at which layer should we introduce caches to speed things up?
+- What components need better load balancing?
+
 ## STEP 7: FIGURE OUT (AND RESOLVE) BOTTLENECKS
+
+Systems invariably hit bottlenecks because there are always tradeoffs. How can we mitigate these?
+
+If there is a single point of failture in our system, what are we doing to solve this?
+
+Are there enough replications of data so that we can still serve or users if we lose a few servers?
+
+Do we have enough copies of different services running such that a few failures will not cause a total shutdown?
+
+How are we monitoring performance? Do we get alerts whenever there's critical issues that fail or degrade?
+
+[Back to Top](#step-by-step-guide)
