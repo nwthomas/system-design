@@ -1,5 +1,3 @@
-[<-- HOME](../README.md)
-
 # STEP-BY-STEP GUIDE 🗺
 
 Many software engineers struggle with system design interviews (SDIs). This is due to the vague nature inherent to them; they are unstructured, most people don't have experience designing large scale distrubuted systems, and people just flat-out don't spend enought time preparing for them.
@@ -101,5 +99,3 @@ Are there enough replications of data so that we can still serve or users if we 
 Do we have enough copies of different services running such that a few failures will not cause a total shutdown?
 
 How are we monitoring performance? Do we get alerts whenever there's critical issues that fail or degrade?
-
-[Back to Top](#step-by-step-guide)
