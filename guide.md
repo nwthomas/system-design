@@ -40,7 +40,33 @@ We should estimate the scale that we're designing. This helps us later when we f
 
 ## STEP 3: DEFINE THE SYSTEM INTERFACE
 
+Define the APIs needed in the system. Some of these could include:
+
+```python
+submit_post(user_id, post_data, user_location, timestamp, ... )
+
+generate_timeline(user_id, current_time, user_location, ... )
+
+mark_post_favorite(user_id, post_id, timestamp, ... )
+```
+
 ## STEP 4: DEFINE THE DATA MODEL
+
+Figuring out the data model for the system early on will clarify in the interview how you'll be handling the data flow between different components of the system. It will also inform your choices for data partitioning and management. You should be able to identify various entities of the system, how they will interact with each other, and different aspects of data management like the storage, transportation, encryption of data, etc.
+
+Here are some examples of entities that could be created (with their associated table fields) for a system like the one sketched out above:
+
+```
+USER: UserID, Name, Email, DateOfBirth, CreationDate, LastLogin, etc.
+
+POST: PostID, Content, PostLocation, NumberOfLikes, TimeStamp, etc.
+
+USER_FOLLOW: UserID1, UserID2, etc.
+
+FAVORITE_POSTS: UserID, PostID, Timestamp
+```
+
+Also, what database and type (NoSQL or SQL) should we use? Will NoSQL like a MongoDB best fit our needs, or should we use a MySQL-like solution? How will we do block sroage for media like photos and videos.
 
 ## STEP 5: MAKE THE META-LEVEL DESIGN
 
