@@ -58,4 +58,16 @@ _NOTE: Reliability vs. Availability - If a system is reliable, it is available. 
 
 ## EFFICIENCY
 
+The two standard measures for efficiency are the response time (latency) and throughput (or bandwidth).
+
+Latency is the delay to get the first item.
+
+Throughput is the number of items delivered in a given time unit (e.g. a second).
+
+Generally speaking, the analysis of a distributed structure in terms of "number of messages" is over-simplistic. We need to take into account network topology, load, and variation. However, these are hard to guesstimate, so we live with rough estimates of the system behavior.
+
 ## SERVICEABILITY OR MANAGEABILITY
+
+A distributed system should be easy to operate and maintain. Simplicity and speed is key. If time to repair a failed system increases, availability will decrease as well. We need to have an easy time diagnosing a system and understanding the problems when they occur. We also need to have an easy time making updates/modifications.
+
+Early detection of fauls can decrease or completely avoid system downtime (which is why error tracking and data analytics on hosted services are so popular). Some enterprise systems can automatically call a service center when the system experiences a system fault.
