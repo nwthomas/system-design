@@ -7,10 +7,12 @@ System Design Interviews are always interesting, and I've wanted to go take a co
 ## TABLE OF CONTENTS
 
 - [Step-by-Step Guide](./guide.md)
+- [Concepts](./concepts/)
+  1. [Key Characteristics of Distributed Systems](./concepts/key-characteristics.md)
 - [Questions](./questions/)
-  1. URL Shortener (COMING SOON)
+  1. [URL Shortener](./questions/url-shortener.md)
 
 ## ACKNOWLEDGEMENTS
 
-- As always, thanks [Lambda School](https://lambdaschool.com/) for starting my on this path. You are an amazing company.
+- As always, thanks [Lambda School](https://lambdaschool.com/) for starting me on this path. You are an amazing company.
 - Thanks to Twitter for paying for classes that help with my ongoing learning. It's great to work at a company that does that for its employees.
