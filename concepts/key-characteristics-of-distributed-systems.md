@@ -1,6 +1,8 @@
 # KEY CHARACTERISTICS OF DISTRIBUTED SYSTEMS
 
 1. [Scalability](#scalability)
+   - [Horizontal Scaling](#horizontal-scaling)
+   - [Vertical Scaling](#vertical-scaling)
 2. [Reliability](#reliability)
 3. [Availability](#availability)
 4. [Efficiency](#efficiency)
@@ -16,7 +18,7 @@ Generally, the performance iof a system declines with the system size because of
 
 These tasks would limit the speed that can be obtained by the distributed system. Architecutre that can scale avoids this situation and attempts to balance the load on all participating nodes in the system evenly.
 
-#### HORIZONTAL SCALING
+### HORIZONTAL SCALING
 
 Horizontal scaling means that you can by adding more machines (servers) into your pool of resouces. You have more nodes in the system.
 
@@ -24,7 +26,7 @@ This is often easier to do dynamically (especially with the advent of cloud comp
 
 Examples of this include Cassandra or MongoDB as they scale horizontally by adding more machines to meet growing demand.
 
-#### VERTICAL SCALING
+### VERTICAL SCALING
 
 Vertical scaling means that you add more power (e.g. CPU, RAM, etc.) onto a server.
 
@@ -45,6 +47,14 @@ Amazon has a requirement that no transation should ever be canceled due to a fai
 Redundancy has a cost, and a reliable system has to pay that to achieve such resiliance for services by eliminating points of failure.
 
 ## AVAILABILITY
+
+This is "the time a system remains operational to perform its required function in a specific period. It is a simple measure of the percentage of time that system, service, or a machine remains operational under normal conditions."
+
+Aircraft can fly for many hours a month without much downtime - This is high availability.
+
+Availability should take into account maintainability, repair time, spares available, and other considerations.
+
+_NOTE: Reliability vs. Availability - If a system is reliable, it is available. But an available system is not necessary reliable. Read that again. This is possible by minimizing repair time and ensuring that spares are always available when they are needed. For instance, a system might launch with many sevurity risks but is always available. In a later year of operation, it might experience breaches. This might result in downtime. This is a system that is available (at least initially) but not reliable._
 
 ## EFFICIENCY
 

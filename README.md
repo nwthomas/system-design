@@ -8,7 +8,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
 
 - [Step-by-Step Guide](./guide.md)
 - [Concepts](./concepts/)
-  1. [Key Characteristics of Distributed Systems](./concepts/key-characteristics.md)
+  1. [Key Characteristics of Distributed Systems](./concepts/key-characteristics-of-distributed-systems.md)
 - [Questions](./questions/)
   1. [URL Shortener](./questions/url-shortener.md)
 
