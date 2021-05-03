@@ -36,6 +36,14 @@ A good example of vertical scaling is MySQL as it allows for switching from smal
 
 ## RELIABILITY
 
+Reliability "is the probability a system will fail in a given period." This means that a distributed system is considered reliable if it keeps delivering its services even when onre or several of its software or hardware components fail.
+
+This is one of the main characterstics of anhy distributed system, since a failing machine can always be replaced by another healthy one, ensuring the completion of the requested task.
+
+Amazon has a requirement that no transation should ever be canceled due to a failure of a machine that is running that transaction. If a user adds an item to a shopping card, the system should not lose it. Distributed systems achieves this through redundancy of both the software components and data. If the original server fails, another with the exact replica of the shopping card should replace it.
+
+Redundancy has a cost, and a reliable system has to pay that to achieve such resiliance for services by eliminating points of failure.
+
 ## AVAILABILITY
 
 ## EFFICIENCY
