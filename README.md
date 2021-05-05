@@ -11,6 +11,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
   1. [Key Characteristics of Distributed Systems](./concepts/key-characteristics-of-distributed-systems.md)
   2. [Load Balancing](./concepts/load-balancing.md)
   3. [Caching](./concepts/caching.md)
+  4. [Data Partitioning](./concepts/data-partitioning.md)
 - [Questions](./questions/)
   1. [URL Shortener](./questions/url-shortener.md)
 
