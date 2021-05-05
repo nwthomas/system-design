@@ -1,4 +1,4 @@
-# LOAD BALANCING
+# LOAD BALANCING ⚖️
 
 1. [Summary](#summary)
 2. [Benefits of Load Balancing](#benefits-of-load-balancers)
@@ -14,6 +14,12 @@ Load Balancers (LBs) are a critical component of distributed systems which sprea
 LBs will stop sending traffic to a node if its not avaialble to take a request, is not responding, has an elevated error rate, etc.
 
 Load Balancers sit between the client and server (typically) and accepts incoming network and application traffice. It will then distribute the traffic across multiple back-end servers using various algorithms. This reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.
+
+As time has gone on, LBs have also added additional capabilities like application security.
+
+LBs used to be a hardware appliance but are increasingly software-defined.
+
+They typically decrypt SSL at the LB layer and pass on unencrypted traffic to other servers. This can open up potential problems for hacks, but that risk is lessened when the LB is in the same data center as the servers (no outside transmission of data).
 
 ![Load balancer](../assets/load-balancer.png)
 
