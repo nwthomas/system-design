@@ -1,8 +1,10 @@
 # LOAD BALANCING
 
 1. [Summary](#summary)
-2. [Benefits of Load Balancing](#benefits-of-load-balancing)
+2. [Benefits of Load Balancing](#benefits-of-load-balancers)
 3. [Load Balancing Algorithms](#load-balancing-algorithms)
+   - [Health Check](#health-check)
+   - [Load Balancing Methods](#load-balancing-methods)
 4. [Redundant Load Balancers](#redundant-load-balancers)
 
 ## SUMMARY
@@ -42,6 +44,21 @@ There are two factors to consider when choosing a back-end server:
 
 ### HEALTH CHECK
 
+LBs should only forward traffic to healthy back-end servers. Health checks will regularly attempt to connect to back-end servers to ensure that servers are listening. If a server fails a health check, it is automatically removed from the pool. Traffic will not be forwarded to it again until it passes the health check.
+
 ### LOAD BALANCING METHODS
 
+Some of the load balancing algorithms include:
+
+1. **Least Connection Method** - Directs traffic to the server with the fewest active connections. This is useful when there are a large number of _persistent_ client connections which are unevenly distributed between the servers.
+2. **Least Response Time Method** - This directs traffic to the server with the fewest active connections and the lowest average response time.
+3. **Least Bandwidth Method** - This selects the server that is currently serving the least amount of traffic measure in megabits per second (Mbps).
+4. **Round Robin Method** - This method cycles through a list of servers and sends each new request to the next server. When it reaches the end of the list, it starts over at the start. It is useful when the servers are equal and there are not many persistent connections.
+5. **Weighted Round Robin Method** - This is designed to handle servers with different processing capacities. Each server has a weight (an integer). Servers with higher weights receive new connections and more connections before those with less weights.
+6. **IP Hash** - Under this method, a hash of the IP address of the client is calculated to redirect the request to a server.
+
 ## REDUNDANT LOAD BALANCERS
+
+An LB can be a single point of failure, so a second load balancer can be connected to the first to form a cluster. Each LB monitors the health of the other and one will take over for the other if one of them fails.
+
+![Multiple Load Balancers](../assets/multiple-load-balancers.png)
