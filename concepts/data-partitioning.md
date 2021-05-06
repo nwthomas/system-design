@@ -66,6 +66,19 @@ Under this scheme, we can combine any of the above to create a new scheme. For e
 
 ### JOINS AND DENORMALIZATION
 
+Performing joins on a database which is running on one server is straightforward, but a partitioned one is not. Such joins will not be performance efficient since data has to be compiled from multiple servers. A common workaround for this problem is to denormalize the database so that queries that previously required joins can be performed from a single table. This means that the service will have to deal with the problems of denormalization (like data inconsitency).
+
 ### REFERENTIAL INTEGRITY
 
+Enforcing data integrity constraints like foreign keys is extremely difficult. Most of the RDBMS do not support foreign key constraints across databases on different database servers. This means that the applications that require referential integrity on partitionined databases often have to enforce it in application code. Applications will also have to run regular SQL jobs to clean up dangling references.
+
 ### REBALANCING
+
+Reasons for changing/rebalancing the data partitioning scheme include:
+
+1. The data distribution is not uniform (e.g. there are a lot of places for a particular ZIP code that cannot fit into one database partition)
+2. There is a lot of load on a partition, e.g., there are too many requests being handled by the DB partition dedicated to user photos
+
+In such cases, either we have to create more DB partitions or have to rebalance existing partitions, which means that the partitioning scheme changed and all existing data moved to new locations.
+
+Doing this without downtime is extremely difficult. Using a scheme like directory-based partitioning can make rebalancing a more palatable experience at the cost of increasing complexit of the system and creating a new single point of failure (i.e. the lookup service/database).
