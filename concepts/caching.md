@@ -48,3 +48,5 @@ A cache evication policy is how the cache will invalidate/evict data:
 - MRU, or Most Recently Used: Discards the most recently used items first.
 - LFU, or Least Frequently Used: Counts how often an item is needed. Those that are used least often are discarded first.
 - RR, or Random Replacement: Randomly selects a candidate item and then discards it to make space when necessary.
+
+[Additional Content](https://lethain.com/introduction-to-architecting-systems-for-scale/)

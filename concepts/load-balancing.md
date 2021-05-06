@@ -13,7 +13,7 @@ Load Balancers (LBs) are a critical component of distributed systems which sprea
 
 LBs will stop sending traffic to a node if its not avaialble to take a request, is not responding, has an elevated error rate, etc.
 
-Load Balancers sit between the client and server (typically) and accepts incoming network and application traffice. It will then distribute the traffic across multiple back-end servers using various algorithms. This reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.
+Load Balancers sit between the client and server (typically) and accepts incoming network and application traffic. It will then distribute the traffic across multiple back-end servers using various algorithms. This reduces individual server load and prevents any one application server from becoming a single point of failure, thus improving overall application availability and responsiveness.
 
 As time has gone on, LBs have also added additional capabilities like application security.
 
@@ -68,3 +68,4 @@ Some of the load balancing algorithms include:
 An LB can be a single point of failure, so a second load balancer can be connected to the first to form a cluster. Each LB monitors the health of the other and one will take over for the other if one of them fails.
 
 ![Multiple Load Balancers](../assets/multiple-load-balancers.png)
+[Additional Content](https://lethain.com/introduction-to-architecting-systems-for-scale/)

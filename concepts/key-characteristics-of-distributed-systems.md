@@ -14,9 +14,9 @@ This is the ability of the system, process, or a network to grow and manage incr
 
 There should be no massive performance loss.
 
-Generally, the performance iof a system declines with the system size because of management/environment cost. Network speeds are slower when machines are far apart from each toher. Additionally, some tasks may not be distrubted, either because of their inherent atomic nature or because of some flaw in the system design.
+Generally, the performance of a system declines with the system size because of management/environment cost. Network speeds are slower when machines are far apart from each other. Additionally, some tasks may not be distrupted, either because of their inherent atomic nature or because of some flaw in the system design.
 
-These tasks would limit the speed that can be obtained by the distributed system. Architecutre that can scale avoids this situation and attempts to balance the load on all participating nodes in the system evenly.
+These tasks would limit the speed that can be obtained by the distributed system. Architecture that can scale avoids this situation and attempts to balance the load on all participating nodes in the system evenly.
 
 ### HORIZONTAL SCALING
 

@@ -12,6 +12,9 @@ Data partitioning is a technique to break up big database DBs into many smaller 
    - [Round Robin Partitioning](#round-robin-partitioning)
    - [Composite Partitioning](#composite-partitioning)
 3. [Common Problems of Data Partitioning](#common-problems-of-data-partitioning)
+   - [Joins and Denormalization](#joins-and-denormalization)
+   - [Referential Integrity](#referential-integrity)
+   - [Rebalancing](#rebalancing)
 
 ## PARTITIONING METHODS
 
@@ -35,16 +38,34 @@ This is straightforward to implement and lends itself nicely to distributed syst
 
 A loosely-coupled approach to work around the issues with the two methods above is to create a lookup service which knows your current partitioning scheme and abstracts it away from the DB access code.
 
-We would query the irectory server to get where the data resides. This loosely-coupled approach means we can perform tasks like adding servers to the DB pool or changing our partitioning scheme without having an impact on the application.
+We would query the directory server to get where the data resides. This loosely-coupled approach means we can perform tasks like adding servers to the DB pool or changing our partitioning scheme without having an impact on the application.
 
 ## PARTITIONING CRITERIA
 
 ### KEY (OR HASH-BASED) PARTITIONING
 
+In this scheme, we apply a hashing function to some key attributes of the entity we are storing; that yields the partition number. For example, if we have 100 DB servers and our ID is a numberic value that gets incremented by one each time a new record is inserted. In this example, the has could be `ID % 100` which will give us the server number where we can store/read that record.
+
+This approach should ensure a uniform allocation of data among servers. The problem with it is that it fixes the total number of DB servers. Upgrading the number of servers changes the hashing function with requires redistribution of data, downtime for the service, and rebuilding the DBs.
+
+A workaround is consistent hashing.
+
 ### LIST PARTITIONING
+
+In this scheme, each partition is assigned a list of values, so whenever we want to insert a new record, we will see which partition contains our key and then store it there. For example, all users living in Iceland, Norway, Finland, or Denmark could be stored in the partition for Nordic countries.
 
 ### ROUND-ROBIN PARTITIONING
 
+This simple strategy ensures uniform data distribution. With 'n' partitions, the 'i' tuple is assigned to partition `i % n`.
+
 ### COMPOSITE PARTITIONING
 
+Under this scheme, we can combine any of the above to create a new scheme. For example, combining a list partitioning scheme and then a hash based one inside it. Consistent hashing could be considered a composite of hash and list paritioning where the hash reduces the key space to a size that can be listed.
+
 ## COMMON PROBLEMS OF DATA PARTITIONING
+
+### JOINS AND DENORMALIZATION
+
+### REFERENTIAL INTEGRITY
+
+### REBALANCING
