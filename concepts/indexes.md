@@ -19,4 +19,14 @@ Often, there are usually two such catalogs - one by artist name and one by book 
 
 ## WHAT IS AN INDEX?
 
+An index is a data structure that can be seen as a table of contents that points us to the location where actual data lives. When we create an index on a column of a table, we store that column and pointer to the whole row in the index.
+
+Here's an example borrowing the previous example of books:
+
+![Book index exmple](../assets/book-indices.png)
+
+With indexes, we must consider how users will access the data. In the case of data sets that are many terabytes in size but have small payloads, indexes are a necessity for optimizing data access. Finding these small payloads in a large dataset is a big challenge since we can't iterate over all of the terabytes of data in a performant and timely manner.
+
+The large dataset is also probably spread over many devices which means that we need to find some way of exploring the correct physical location of the desire data. Indexes are the way to do this.
+
 ## HOW DO INDEXES DECREASE WRITE PERFORMANCE?
