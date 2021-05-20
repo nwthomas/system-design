@@ -30,3 +30,9 @@ With indexes, we must consider how users will access the data. In the case of da
 The large dataset is also probably spread over many devices which means that we need to find some way of exploring the correct physical location of the desire data. Indexes are the way to do this.
 
 ## HOW DO INDEXES DECREASE WRITE PERFORMANCE?
+
+The problem is that indexes can dramatically speed up data retrieval but may be a large cost due to the additional keys which slow down data insertion and updates in the database.
+
+When adding rows or making updates to existing rows in a table with an active index, we have to write the data AND update the index. This obviously decreases the write performance. This degradation applies to ALL insert, update, and delete operations for the table.
+
+Because of this, adding unnecessary indexes on tables should be avoided and indexes that are no longer used should be removed. Adding indexes on a table is about improving the performance of search queries. If the goal is to provide a data store that is often written to and updated/deleted but not read from as often, decreasing of the main operations through heavy indexing might not be worth the increase in performance we get from reading.
