@@ -73,9 +73,17 @@ In NoSQL, queries are focused on a collection of documents. This is also sometim
 
 ### SCALABILITY
 
+In most situations, SQL DBs are vertically scalable (increasing horsepower) which is really expensive. It's possible to scale a relational DB across multiple servers, but this is challenging and time-consuming.
+
+In contrast, NoSQL databases are horizontally scalable which means that we could add more servers to our NoSQL DBs infrastructure to handle more traffic. Any cheap commodity hardware or cloud instances can host NoSQL databases, so it's a lot more cost-effective than vertical scaling. A lot of these NoSQL technologies distribute data across servers automatically.
+
 ### RELIABILITY OR ACID COMPLIANCY
 
 ACID stands for _Atomicity, Consistency, Isolation, and Durability_.
+
+Most relational databases are ACID compliant. There's a safe guarantee of performing transactions that there will be data reliability.
+
+In contrast, most NoSQL solutions sacrifice ACID compliance for performance and scalability.
 
 ## SQL VERSUS NO-SQL - WHICH ONE TO USE?
 
