@@ -87,6 +87,21 @@ In contrast, most NoSQL solutions sacrifice ACID compliance for performance and 
 
 ## SQL VERSUS NO-SQL - WHICH ONE TO USE?
 
+Most business have both relational and non-relational DBs for different needs. As NoSQL is gaining popularity for speed and scalability, there are situations were a highly structured SQL DB may perform better; choosing the right technology depends on the use case.
+
 ### SQL REASONS
 
+You should choose a SQL database if:
+
+1. We need ACID compliance. This will protect the data in the database by prescribing exactly how transactions interact with the database. Many e-commerce and financial applications need ACID compliance.
+2. Your data is structured and unchanging. If your business is not experiencing massive growth that would require more servers and if you're only working with data that is consistent, then there may be no reason to have a system that supports a variety of types of data and traffic.
+
 ### NO-SQL REASONS
+
+NoSQL databases prevent data from being the bottleneck. Big data needs NoSQL databases because it handles data differently than the traditional relational databases.
+
+You should choose a NoSQL database if:
+
+1. You need to store large amounts of data that have little-to-no structure. There's no limits on the types of data that we can store together, so NoSQL allows us to add new types as the need changes. You can store your data in one place without having to define what types of data those are in advance or take your database down for it.
+2. You need to make the most of cloud computing and storage.
+3. You are undergoing rapid development. NoSQL is useful for this because it doesn't need to be prepped ahead of time. If you're making frequent updates to the data structure and need to maintain uptime, a relational database will slow you down.
