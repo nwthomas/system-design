@@ -39,4 +39,24 @@ Just like in a typical hash function, Consistent Hashing maps a key to an intege
    - Move clockwise on the ring until finding the first cache it encounters
    - That cache is the one that contains the key. See animation below as an exmaple: `key1` maps to cache `A`; `key2` maps to cache `C`.
 
+If we want to add a new server, keys that were originally at `C` will have to be split. Some of them will be shifted to `D` (the new server), while other keys won't be touched.
+
+If we remove a cache (or if one fails, say `A`), all keys that were originally mapped to `A` will fall into `B`. Only those keys need to be moved to `B` - other keys will not be affected.
+
+For load balancing, the real data is essentially randomly distributed and thus may not be uniform. It may make the keys on caches unbalanced.
+
+To fix this issue, we need to add `virtual replicas` for caches. Instead of mapping each cache to a single point on the ring, we map it to multiple points on the ring (e.g. replicas). This way, each cache is associated with multiple portions of the ring but not a 1:1 relationship with a server.
+
+If the has function "mixes well", the keys will be more balanced as the number of replicas increases.
+
+Here's an example of a flow of adding/removing servers to a Consistently Hashed system:
+
 ![Consistent Hashing example A](../assets/consistent-hashing-example-a.png)
+
+![Consistent Hashing example B](../assets/consistent-hashing-example-b.png)
+
+![Consistent Hashing example C](../assets/consistent-hashing-example-c.png)
+
+![Consistent Hashing example D](../assets/consistent-hashing-example-d.png)
+
+![Consistent Hashing example E](../assets/consistent-hashing-example-e.png)
