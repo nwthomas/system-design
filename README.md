@@ -17,6 +17,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
    - [SQL vs. NoSQL](./concepts/sql-versus-nosql.md)
    - [CAP Theorem](./concepts/cap-theorem.md)
    - [Consistent Hashing](./concepts/consistent-hashing.md)
+   - [Communication Protocols](./concepts/communication-protocols.md)
 3. [Questions](./questions/)
    - [URL Shortener](./questions/url-shortener.md)
 
