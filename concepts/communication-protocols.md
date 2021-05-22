@@ -40,4 +40,20 @@ Each Long-Poll request will typically have a timeout. The client has to reconnec
 
 ## WEBSOCKETS
 
+A WebSocket probides [full duplex](<https://en.wikipedia.org/wiki/Duplex_(telecommunications)#Full_duplex>) communication (communication in both directions) simultaneously over a single TCP (Transmission Control Protocol) connection. It provides a persistent connection between a client and a server that both parties can use to start sending data at any time.
+
+The process of establishing a WebSocket connection is called "the WebSocket handshake." If the process succeeds, then the server and client can exchange data in both directions at any time.
+
+This enables communication between a server and client with lower overheads, facilitating real-time data transfer from-and-to the server and bi-directional communication.
+
+![WebSockets](../assets/websockets.png)
+
 ## SERVER-SENT EVENTS (SSEs)
+
+Finally, an SSE connection allows the client to extablish a persistent and long-term connection with the server. The server then uses this connection to send data to a client. If the client wants to send data to the server, it would require another technology or protocol to do so.
+
+In this way, you can think of this protocol as open-ended but one-way.
+
+SSEs are best when we ned real-time traffic from the server to the client or if the server is generating data in a lop and will be sending multiple events to the client.
+
+![Server-Sent Events](../assets/server-sent-events.png)
