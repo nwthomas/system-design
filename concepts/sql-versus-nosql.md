@@ -45,17 +45,31 @@ In document databases, data is store in documents (instead of rows and columns) 
 
 ### WIDE-COLUMN DATABASES
 
-Instead of tables, wide-column databases have column families which are containers for rows.
+Instead of tables, wide-column databases have column families which are containers for rows. Unlike relational databases, we don't need to know all the columns up front and each row doesn't have to have the same number of columns. These types of databases are best suited for analyzing large datasets - big names include Cassandra and HBase.
 
 ### GRAPH DATABASES
+
+These are used to store data whose relations are best represented in a graph. Data gets saved into graph structures with the nodes/vertices/entities, properties (which are the information about the entities), and lines/edges. Examples of graph databases include Neo4J and InfiniteGraph.
 
 ## HIGH LEVEL DIFFERENCES BETWEEN SQL AND NO-SQL
 
 ### STORAGE
 
+SQL stores data in tables where each row represents an entity and each column represents a data point about that entity. For example, a car entity would have coluns with Color, Make, Model, etc.
+
+NOSQL DBs have key-value, document, graph, and columnar schemas.
+
 ### SCHEMA
 
+In SQL, each record conforms to a fixed schema meaning that the columns must be decided and chosen before data entry and each row must have data for each column. The schema can be updated later, but it means modifying the entire DB and taking it offline (e.g. "Maintenance").
+
+In contrast, NoSQL DBs have schemas that are dynamic. Columns can be added on the fly and each 'row' doesn't have to necessary have data for each column.
+
 ### QUERYING
+
+SQL databases use SQL (Structured Query Language) for defining and manipulating data. It's _extremely_ powerful.
+
+In NoSQL, queries are focused on a collection of documents. This is also sometimes called UnQL (Unstructured Query Language). Different DBs have different syntax for using UnQL.
 
 ### SCALABILITY
 
