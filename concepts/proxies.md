@@ -19,10 +19,12 @@ Proxies can sit anywhere from client-side to the remote back-end servers. Here's
 
 ### OPEN PROXY
 
-An open proxy is where the proxy is accessible by any Internet user. A proxy server only allows users within a network group (i.e. a closed proxy) to store and forward Internet services such as DNS or web pages to reduce and control the bandwidth used by the group. With an open proxy, however, any user on the Internet is able to use this forwarding service. There are two famous types:
+An [open proxy](https://en.wikipedia.org/wiki/Open_proxy) is where the proxy is accessible by any Internet user. A proxy server only allows users within a network group (i.e. a closed proxy) to store and forward Internet services such as DNS or web pages to reduce and control the bandwidth used by the group. With an open proxy, however, any user on the Internet is able to use this forwarding service. There are two famous types:
 
 1. **The Anonymous Proxy** - This reveals its identity as a server but does not disclose the initial IP address. The discovery of this proxy server can be beneficial for some users as it also hides their IP address.
 
 2. **Transparent Proxy** - This identifies itself and, with the support of HTTP headers, the first IP address can also be viewed. The benefit of this sort of server is its ability to cache websites.
 
 ### REVERSE PROXY
+
+A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) retrieves resources on behalf of a client from one or more servers. These resources are then returned to the client, appearing as if they originated from the proxy server itself. This one is super common too.
