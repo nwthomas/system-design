@@ -14,6 +14,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
   4. [Data Partitioning](./concepts/data-partitioning.md)
   5. [Indexes](./concepts/indexes.md)
   6. [Proxies](./concepts/proxies.md)
+  - [SQL vs. NoSQL](./concepts/sql-versus-nosql.md)
 - [Questions](./questions/)
   1. [URL Shortener](./questions/url-shortener.md)
 
