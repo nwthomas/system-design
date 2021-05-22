@@ -6,17 +6,17 @@ System Design Interviews are always interesting, and I've wanted to go take a co
 
 ## TABLE OF CONTENTS
 
-- [Step-by-Step Guide](./guide.md)
-- [Concepts](./concepts/)
-  1. [Key Characteristics of Distributed Systems](./concepts/key-characteristics-of-distributed-systems.md)
-  2. [Load Balancing](./concepts/load-balancing.md)
-  3. [Caching](./concepts/caching.md)
-  4. [Data Partitioning](./concepts/data-partitioning.md)
-  5. [Indexes](./concepts/indexes.md)
-  6. [Proxies](./concepts/proxies.md)
-  - [SQL vs. NoSQL](./concepts/sql-versus-nosql.md)
-- [Questions](./questions/)
-  1. [URL Shortener](./questions/url-shortener.md)
+1. [Step-by-Step Guide](./guide.md)
+2. [Concepts](./concepts/)
+   - [Key Characteristics of Distributed Systems](./concepts/key-characteristics-of-distributed-systems.md)
+   - [Load Balancing](./concepts/load-balancing.md)
+   - [Caching](./concepts/caching.md)
+   - [Data Partitioning](./concepts/data-partitioning.md)
+   - [Indexes](./concepts/indexes.md)
+   - [Proxies](./concepts/proxies.md)
+   - [SQL vs. NoSQL](./concepts/sql-versus-nosql.md)
+3. [Questions](./questions/)
+   - [URL Shortener](./questions/url-shortener.md)
 
 ## ACKNOWLEDGEMENTS
 
