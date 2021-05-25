@@ -29,7 +29,46 @@ They are also useful to track clicks/user engagement with content.
 
 ## REQUIREMENTS AND GOALS OF THE SYSTEM
 
+> 🚧 _ALWAYS CLARIFY REQUIREMENTS AT THE START_ 🚧
+
+Our system has the following requirements:
+
+**Functional Requirements**
+
+1. Given a URL, our system should generate a unique and shorter version of it. This is called a short link. It should be easily copied and pasted into other applications.
+2. When users access this link, it will redirect them to the original link.
+3. Users should be able to optionally choose a custom short link.
+4. Links should expire after a default timespan, but users should be able to override and specify an expiration time.
+
+**Non-Functional Requirements**
+
+1. The system should be highly available. Redirects cannot fail.
+2. URL redirection should happen quickly, in real-time, and with minimal latency.
+3. Shortened links should not be guessable.
+
+**Extended Requirements**
+
+1. Analytics would be nice (e.g. how many times redirects have happeneds)
+2. Our service should be accessible through REST or other services
+
 ## CAPACITY ESTIMATION AND CONSTRAINTS
+
+Our system is read heavy since users will create a shortened URL once and it could be read hundreds or thousands of times.
+
+We can assume 100 read to 1 write scenario - 100:1.
+
+If we assume 500M new URls per month, we can expect 50B redirects.
+
+We will have about 193 new URLs created per second:
+
+```
+500000000 / (30 * 24 * 3600) = ~193/s
+```
+
+Based on our estimations before about redirect-to-write being 100:1, the redirects per second will be estimated at 19,300:
+
+```
+193 * 100 = 19,300/s
 
 ## SYSTEM APIS
 
@@ -48,3 +87,4 @@ They are also useful to track clicks/user engagement with content.
 ## TELEMETRY
 
 ## SECURITY AND PERMISSIONS
+```
