@@ -69,6 +69,19 @@ Based on our estimations before about redirect-to-write being 100:1, the redirec
 
 ```
 193 * 100 = 19,300/s
+```
+
+Our system will also have to store data. Let's assume that we store every URL shortening request for 5 years. Since we expect to have 500M new URLs every month the total number of objects we expect to store will be 30 billion:
+
+```
+500M * 5 years * 12 months = 30 billion
+```
+
+If we assume that each stored object will be approximately 500 bytes, we'll need 15 TB of total storage across 5 years:
+
+```
+30 billion * 500 bytes = 15 TB
+```
 
 ## SYSTEM APIS
 
@@ -87,4 +100,7 @@ Based on our estimations before about redirect-to-write being 100:1, the redirec
 ## TELEMETRY
 
 ## SECURITY AND PERMISSIONS
+
+```
+
 ```
