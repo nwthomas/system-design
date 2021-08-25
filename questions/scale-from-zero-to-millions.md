@@ -12,6 +12,9 @@ Difficulty: _Easy_
 4. [Load Balancer](#load-balancer)
 5. [Database Replication](#database-replication)
 6. [Cache](#cache)
+7. [Content Delivery Network (CDN)](#content-delivery-network-cdn)
+8. [Stateless Web Tier](#stateless-web-tier)
+9. [Data Centers](#data-centers)
 
 ## SINGLE SERVER SETUP
 
@@ -143,3 +146,70 @@ SECONDS=1
 cache.set("myKey", "hi there", 3600 * SECONDS)
 cache.get("myKey")
 ```
+
+Considerations for a cache include:
+
+- Decide when to use a cache. If data is read frequently but modified infrequently, they can be a great choice. A cache server is not ideal for persisting data. If the cache server restarts, all the data will be lost. Thus, important data should be saved to the database.
+- It's good practice to have an expiration policy on cached data that will automatically remove it from the cahce. When there's no expiration policy, cahced data will be stored in the memory permanently until the cache is restarted. This is not advisable. You should make it medium length and not too short since a short policy will result in many requests to the database.
+- Consistenty: You need to have the database and cache in sync. When scaling across multiple regions, maintaining consistency between the data store and cache is challenging.
+- Mitigating failures: A single cache server represents a potential point of failure (SPOF) which means that, if it fails, it will stop the entire system from working. Multiple cache servers across different data centers are recommended to avoid SPOF. You could also overprovision the rquired memory by certain percentages. This provides a buffer.
+
+![Single point of failure](../assets/single-point-of-failure.png)
+
+- Eviction policy: Once the cahe is full, any new requests to add items might require items to be removed. Least Recently Used (LRU) is the most popular cache evication policy. Other ones like Least Frequently Used (LFU) or First In, First Out (FIFO) can be adopted to satisfy different use cases.
+
+## CONTENT DELIVERY NETWORK (CDN)
+
+A CDN is a network of geographically dispersed servers that can deliver static content. CDN servers cache static content like images, videos, CSS, JavaScript files, etc.
+
+Dynamic content caching is a relatively new concept and byond the scope of where we're at.
+But it can enable the caching of HTML pages that are based on request path, query strings, cookies, request headers, etc. We'll talk here about CDN caching for static content.
+
+When a user visits a website, a CDN server closest to the user will deliver static content. The further users are from CDN servers, the slower the page loads.
+
+Example:
+
+![CDN example](../assets/cdn-example.png)
+
+Considerations of a CDN include:
+
+- **Cost:** CDNS are run by 3rd party providers, and you are charged for data transfers in and out of CDN. Caching infrequently used assets provides no benefits and you have to pay for it.
+- **Cache Expiry:** For time-sensitive content, setting a cache expiry time is important. The expiry time should neither be too long nor too short. If it is too long, the content might no longer be fresh. If it is too short, it can cause repeat reloading of content from origin servers to the CDN.
+- **CDN fallback:** You should consider how your website/application copes with CDN failure. If there is a temporary CDN outage, clients should be able to detect the problema nd request resources from the origin.
+- **Invalidating files:** You can remove a file from the CDN before it expires by invalidating via API from the CDN vendor or serving a different version of the data object.
+
+Here's our application design with the CDN added:
+
+![Application with cdn](../assets/application-with-cdn.png)
+
+This serves static assets via CDN instead of web servers and the database is lightened by caching data.
+
+## Stateless Web Tier
+
+Now, we finally get to consider scaling the web tier horizontally.
+
+We need to move state (like user session data) out of the web tier. A good practice is to put session data into persistent storage like a RDBMS or NoSQL. Then each web server can access that session data.
+
+A stateful server and stateless server have some key differences. A stateful server remembers client data from one request to the next. A stateless server keeps no state information.
+
+If servers are stateful, every request from the same client must be routed to the same server. This can be done with sticky sessions in most load balancers, but this adds overhead. Also, adding/removing servers is hard in this approach.
+
+Instead, we should have a stateless architecture:
+
+![Stateless web tier](../assets/stateless-web-servers.png)
+
+This way, HTTP requests from users can be routed to any web server and fetch state data from a shared data store. State data is stored in a shared data store and kept out of web servers. This system is simpler, more robust, and highly scalable.
+
+Here's our system with a stateless web tier:
+
+![stateless-web-tier-application](../assets/stateless-web-tier-application.png)
+
+We've now moved the session data out into a NoSQL server/database that can persist the data seperately from the web tier servers.
+
+NoSQL was chosen as it's easy to scale.
+
+Also, making the web tier servers stateless measn that it's now easy to add or remove servers based on traffic load.
+
+Now we need to solve the problem of our growing traffic that's geographically distributed.
+
+## Data Centers

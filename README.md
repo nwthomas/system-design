@@ -1,8 +1,6 @@
 # SYSTEM DESIGN 👩‍💻 🕸 👨‍💻
 
-In the spirit of learning in public, I'll be committing my notes from the [Educative.io](https://www.educative.io/learn) course [Grokking the System Design Interview](https://www.educative.io/courses/grokking-the-system-design-interview).
-
-System Design Interviews are always interesting, and I've wanted to go take a course on them for a long time. If you're reading this, I hope you enjoy this repository. It is like a living document and will likely be updated throughout my career. I expect that I'll eventually strip any mention of Educative out of it and generalize all the documents while adding more content of my own.
+System Design Interviews are always interesting, and I've wanted to go take courses on them for a long time. If you're reading this, I hope you enjoy this repository. It is like a living document and will likely be updated throughout my career.
 
 ## TABLE OF CONTENTS
 
@@ -19,6 +17,7 @@ System Design Interviews are always interesting, and I've wanted to go take a co
    - [Consistent Hashing](./concepts/consistent-hashing.md)
    - [Communication Protocols](./concepts/communication-protocols.md)
 3. [Questions](./questions/)
+   - [Scale From Zero to Millions](./questions/scale-from-zero-to-millions.md)
    - [URL Shortener](./questions/url-shortener.md) 🚧 Under Construction 🚧
 
 ## ACKNOWLEDGEMENTS
