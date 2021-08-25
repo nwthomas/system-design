@@ -28,6 +28,13 @@ For instance, here's an example of designing a social media system:
 6. Do we have trending topics?
 7. Should users receive push notifications?
 
+As a general rule, here's a list of questions that you can use to get started clarifying requirements:
+
+1. What specific features are we going to build?
+2. How many users does the product have?
+3. How fast does the comapny anticipate to scale up? What are the anticipated scales in 3, 6, and 12 months?
+4. What is the company's technology stack? What existing services might you leverage to simplify the design
+
 These aren't a complete list, but this illustrates how we could ask questions that clarify requirements for the interview.
 
 ## STEP 2: MAKE SOME ESTIMATES

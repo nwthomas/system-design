@@ -83,6 +83,8 @@ If we assume that each stored object will be approximately 500 bytes, we'll need
 30 billion * 500 bytes = 15 TB
 ```
 
+We can estimate for bandwidth that we expect 300 new URLs as write requests per secton, with total incoming data of
+
 ## SYSTEM APIS
 
 ## DATABASE DESIGN
