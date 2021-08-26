@@ -16,11 +16,13 @@ System Design Interviews are always interesting, and I've wanted to go take cour
    - [CAP Theorem](./concepts/cap-theorem.md)
    - [Consistent Hashing](./concepts/consistent-hashing.md)
    - [Communication Protocols](./concepts/communication-protocols.md)
+   - [Estimating Capacity](./concepts/estimating-capacity.md)
 3. [Questions](./questions/)
    - [Scale From Zero to Millions](./questions/scale-from-zero-to-millions.md)
    - [URL Shortener](./questions/url-shortener.md) 🚧 Under Construction 🚧
 
 ## ACKNOWLEDGEMENTS
 
+- My parents, for teaching me to learn and work hard at what I like to do
 - As always, thanks [Lambda School](https://lambdaschool.com/) for starting me on this path. You are an amazing company.
 - Thanks to Twitter for paying for classes that help with my ongoing learning. It's great to work at a company that does that for its employees.
