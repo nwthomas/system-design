@@ -18,7 +18,7 @@ Caches are typically found in all levels of architecture, but are more likely to
 
 ## APPLICATION SERVER CACHE
 
-Placing a cahce directly on a request layer node enables the local storage to upgrade its response time. The node will just return locally cached data if it exists instead of queries the data store. This could be in memory on on disk storage (which is still much faster than going to the network storage).
+Placing a cache directly on a request layer node enables the local storage to upgrade its response time. The node will just return locally cached data if it exists instead of queries the data store. This could be in memory on on disk storage (which is still much faster than going to the network storage).
 
 If you have many nodes and the LB distributes the requests across them, this will cause problems for the caches as it will exponentially increase cache misses. You can either use a global cache or distributed caches.
 

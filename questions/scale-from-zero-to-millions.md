@@ -14,7 +14,10 @@ Difficulty: _Easy_
 6. [Cache](#cache)
 7. [Content Delivery Network (CDN)](#content-delivery-network-cdn)
 8. [Stateless Web Tier](#stateless-web-tier)
-9. [Data Centers](#data-centers)
+9. [Data Centers](#data-centers-dc)
+10. [Messaging Queue](#messaging-queue)
+11. [Logging, Metrics, and Automation](#logging-metrics-and-automation)
+12. [Database Scaling](#database-scaling)
 
 ## SINGLE SERVER SETUP
 
@@ -150,7 +153,7 @@ cache.get("myKey")
 Considerations for a cache include:
 
 - Decide when to use a cache. If data is read frequently but modified infrequently, they can be a great choice. A cache server is not ideal for persisting data. If the cache server restarts, all the data will be lost. Thus, important data should be saved to the database.
-- It's good practice to have an expiration policy on cached data that will automatically remove it from the cahce. When there's no expiration policy, cahced data will be stored in the memory permanently until the cache is restarted. This is not advisable. You should make it medium length and not too short since a short policy will result in many requests to the database.
+- It's good practice to have an expiration policy on cached data that will automatically remove it from the cache. When there's no expiration policy, cached data will be stored in the memory permanently until the cache is restarted. This is not advisable. You should make it medium length and not too short since a short policy will result in many requests to the database.
 - Consistenty: You need to have the database and cache in sync. When scaling across multiple regions, maintaining consistency between the data store and cache is challenging.
 - Mitigating failures: A single cache server represents a potential point of failure (SPOF) which means that, if it fails, it will stop the entire system from working. Multiple cache servers across different data centers are recommended to avoid SPOF. You could also overprovision the rquired memory by certain percentages. This provides a buffer.
 
@@ -212,4 +215,82 @@ Also, making the web tier servers stateless measn that it's now easy to add or r
 
 Now we need to solve the problem of our growing traffic that's geographically distributed.
 
-## Data Centers
+## Data Centers (DC)
+
+In a normal operation, users are geoDNS routed, or geo-routed, to the closest data center. Lots of the time, companies will have US-East and US-West with US-West receiving a (100-x)% of the traffic.
+
+This geoDNS is a service that allows domain names to be resolved to an IP address depending on the geographic location of a user.
+
+![geoDNS Routing](geoDNS-routing.png)
+
+If there's a significant DC outage, you can failover all traffic to a healthy data center.
+
+There are several challenges to the multi-data-center setup:
+
+- **Traffic redirection:** Tools must be in place to direct traffic to the correct data center. GeoDNS can be used to direct traffic to the nearest data center depending on where a user is located.
+- **Data synchronization:** Users from different regions could use different databases or caches. In failover cases, traffic might be routed to a data center where data is unavailable. A common strategy is to replicate data across multiple data centers.
+- **Test and deploy:** With a multi-DC setup, we should test our website/application at different locations. Automated deployment tools are vital to keep services consistent across all the data centers.
+
+Now we need to decouple different components of the system so they can be scaled independently. Having a messaging queue is a key strategy employed by many real-world distributed systems to solve this problem.
+
+## MESSAGING QUEUE
+
+A messaging queue is a component, stored in memory, that supports async communication. It serves as a buffer and distributes async requests. The basic architecture of a message queue is simple.
+
+Input services, called producers or publishers, create messages that are added to the queue (called publishing). Other services or servers, called consumers or subscribers, connect to the queue ad perform actions defined by the messages.
+
+Example:
+
+![Message queue](../assets/message-queue.png)
+
+A producer can post a message to the queue when the consumer is unavailable to process it. The consumer can read messages from the queue when the producer is unavailable.
+
+For instance, an app that supports photo processing like cropping, blurring, etc. could publish jobs to the message queue and then subscribers could pick up jobs when they're available and do the tasks. The producer and consumer side can each be scaled independently. When the size of the queue becomes large, more works are added to reduce the processing time.
+
+## Logging, Metrics, and Automation
+
+When working with a small website that runs on a few servers, logging/metrics/automation are good but not a necessity. But a bigger application means that these tools are essential.
+
+Logging is usually monitoring error logs to identify errors in the system.
+
+Metrics help you gain business insights and understand the health status of the system. Some of these include host level metrics like CPU, memory, disk I/O, etc., aggregated level metrics like the performance of the entire database tier, cache tier, etc., and bueinss metrics like daily active users, retention, revenue, etc.
+
+Automation is when we start leveraging tools to improve productivity. Continuous Integration (CI) is a good practice in which code check-ins are verified through automation. This allows teams to detect problems early and also improves developer productivity.
+
+## DATABASE SCALING
+
+The two broad approaches for database scaling are vertical and horizontal scaling.
+
+**Vertical Scaling**
+
+Just like we previously discussed, this is scaling by adding more CPU, RAM, DISK, etc. to the machine. Amazon RDS offers 24tb of RAM.
+
+Vertical scaling comes with drawbacks:
+
+1. You can add more resources to your server, but there are hardware limits. For a large user base, a single server is not enough.
+2. Greater single point of failure (SPOF)
+3. Overall cost is higher for vertical scaling
+
+**Horizontal Scaling**
+
+This practice is also known as sharding. You add more servers.
+
+Sharding separates large databases into smaller, more easily-managed parts called shards. Each shard shares the same schema, but the data is unique.
+
+Whenever data is accessed, a hash function is used to find the corresponding shard. For instance, `user_id % 4` is a good way to find data in this example:
+
+![4 shard database](../assets/four-shard-database.png)
+
+If the result is 0, shard 0 is used to store/fetch data.
+
+When using this stategy, the most important factor is the sharding key. This key (also known as the "partition key") consists of one or more columns that determine how data is distributed. It allows you to retrieve and modify data efficiently by routing database queries to the correct database. When choosing a sharding key, one of the most important criteria is to choose a key that can be evenly distributed.
+
+Sharding has complexities and new challenges:
+
+- **Resharding data:** This happens when a single shard can no longer hold more data. This can happen when certain shards experience shard exhaustion due to uneven data distribution. Consistent hashing solves this.
+- **Celebrity problem:** Excessive access to a specific shard could cause server overload. For instance, info about Justin Biever, Lady Gaga, etc. might overwhelm a single shard. To solve this, we might need to allocate a shard for each celebrity. This would require further partition.
+- **Join and de-normalization:** When we shard across multiple servers, it's hard to perform join operations across the shards. A workaround is to de-normalize the database so queries can be performed in a single table.
+
+Example of sharding:
+
+![Application with database sharding](../assets/application-with-database-sharding.png)
