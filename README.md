@@ -19,6 +19,7 @@ System Design Interviews are always interesting, and I've wanted to go take cour
    - [Estimating Capacity](./concepts/estimating-capacity.md)
 3. [Questions](./questions/)
    - [Scale From Zero to Millions](./questions/scale-from-zero-to-millions.md)
+   - [Design a Rate Limiter](./questions/design-a-rate-limiter.md)
    - [URL Shortener](./questions/url-shortener.md) 🚧 Under Construction 🚧
 
 ## ACKNOWLEDGEMENTS
