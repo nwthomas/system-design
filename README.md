@@ -10,6 +10,7 @@ System Design Interviews are always interesting, and I've wanted to go take cour
    - [Load Balancing](./concepts/load-balancing.md)
    - [Caching](./concepts/caching.md)
    - [Data Partitioning](./concepts/data-partitioning.md)
+   - [Replication](./concepts/replication.md)
    - [Indexes](./concepts/indexes.md)
    - [Proxies](./concepts/proxies.md)
    - [SQL vs. NoSQL](./concepts/sql-versus-nosql.md)
@@ -24,6 +25,6 @@ System Design Interviews are always interesting, and I've wanted to go take cour
 
 ## ACKNOWLEDGEMENTS
 
-- My parents, for teaching me to learn and work hard at what I like to do
+- My parents, for teaching me to learn and work hard at what I like to do.
 - As always, thanks [Lambda School](https://lambdaschool.com/) for starting me on this path. You are an amazing company.
-- Thanks to Twitter for paying for classes that help with my ongoing learning. It's great to work at a company that does that for its employees.
+- Thanks to Twitter and Loom for paying for classes that help with my ongoing learning. It's great to work at a company that does that for its employees.
