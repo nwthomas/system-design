@@ -10,9 +10,9 @@ Replication is having redundant copies of databases so that an application does 
 
 ## ADDING A FOLLOWER
 
-Step 1: Intiialize the follower using a consistent snapshot of the leader databas which is associated with some position in the replication log
+Step 1: Intiialize the follower using a consistent snapshot of the leader database which is associated with some position in the replication log
 
-Step 2: The follower can now beging accepting changes from the leader
+Step 2: The follower can now begin accepting changes from the leader
 
 ## DEALING WITH A FOLLOWER CRASH
 
@@ -20,7 +20,7 @@ At time of crash, the follower knows where it was up to in the replication log
 
 Step 1: On reboot, fetch all of the new changes from the leader node
 
-Step 2: Start implementing the changes in the replication log from the index at which the follower node had previously failed.
+Step 2: Start implementing the changes in the replication log from the index at which the follower node had previously failed
 
 ## DEALING WITH A LEADER CRASH (FAILOVER)
 
@@ -29,3 +29,11 @@ Step 1: Determine a new leader via some source of consensus (perhaps the most up
 Step 2: Configure all clients to send writes to new leader
 
 Step 3: Configure all other followers to get changes from new leader
+
+## PROBLEMS WITH FAILOVER
+
+Some writes from the previous leader may have been propagated by only some or no replicas. This leads to either lost data or inconsistent replicas.
+
+We can also have accidental failovers due to network congestion which can hurt our data base performance even more.
+
+If the old leader comes back, we need to ensure that it does not think that it is the leader and continue to accept writes (resulting in a split brain).
