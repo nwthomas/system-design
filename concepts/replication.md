@@ -45,6 +45,8 @@ If the old leader comes back, we need to ensure that it does not think that it i
 - Synchronous
   - Client does not receive succss message until all replicas complete the write
   - Strong consistency
+    Data is up to date, but writes take much longer
 - Asyncronous
   - Client receives success message the second that master completes the write
   - Eventual consistency
+  - Writes much faster, but clients can make stale reads to a replica
