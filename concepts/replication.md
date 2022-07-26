@@ -7,6 +7,8 @@ Replication is having redundant copies of databases so that an application does 
 - [Adding a Follower](#adding-a-follower)
 - [Dealing with a Follower Crash](#dealing-with-a-follower-crash)
 - [Dealing with a Leader Crash (Failover)](#dealing-with-a-leader-crash-failover)
+- [Problems with Failover](#problems-with-failover)
+- [Types of Single-Leader Replication](#types-of-single-leader-replication)
 
 ## ADDING A FOLLOWER
 
@@ -37,3 +39,12 @@ Some writes from the previous leader may have been propagated by only some or no
 We can also have accidental failovers due to network congestion which can hurt our data base performance even more.
 
 If the old leader comes back, we need to ensure that it does not think that it is the leader and continue to accept writes (resulting in a split brain).
+
+## TYPES OF SINGLE-LEADER REPLICATION
+
+- Synchronous
+  - Client does not receive succss message until all replicas complete the write
+  - Strong consistency
+- Asyncronous
+  - Client receives success message the second that master completes the write
+  - Eventual consistency
