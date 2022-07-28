@@ -12,7 +12,7 @@
    - [Schema](#schema)
    - [Querying](#querying)
    - [Scalability](#scalability)
-   - [Reliability or ACID Compliance](#reliability-or-acid-compliance)
+   - [Performance or ACID Compliance](#performance-or-acid-compliance)
 5. [SQL versus NoSQL - Which one to use?](#sql-versus-no-sql-which-one-to-use)
    - [SQL Reasons](#sql-reasons)
    - [NoSQL Reasons](#no-sql-reasons)
@@ -77,7 +77,7 @@ In most situations, SQL DBs are vertically scalable (increasing horsepower) whic
 
 In contrast, NoSQL databases are horizontally scalable which means that we could add more servers to our NoSQL DBs infrastructure to handle more traffic. Any cheap commodity hardware or cloud instances can host NoSQL databases, so it's a lot more cost-effective than vertical scaling. A lot of these NoSQL technologies distribute data across servers automatically.
 
-### RELIABILITY OR ACID COMPLIANCY
+### PERFORMANCE OR ACID COMPLIANCE
 
 ACID stands for _Atomicity, Consistency, Isolation, and Durability_.
 
