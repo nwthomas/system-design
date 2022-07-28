@@ -23,6 +23,7 @@ Replication is having redundant copies of databases so that an application does 
   - [Conclusion](#conclusion---multi-leader-replication)
 - [Leaderless Replication](#leaderless-replication)
   - [Keeping Data up to Date](#keeping-data-up-to-date)
+  - [Conclusion](#conclusion---leaderless-replication-conclusion)
 
 ## TYPES OF REPLICATION
 
@@ -164,7 +165,7 @@ Reads go to all database nodes in parallel.
      - Can still have write conflicts
      - Sloppy quorums
 
-### LEADERLESS REPLICATION CONCLUSION
+### CONCLUSION - LEADERLESS REPLICATION CONCLUSION
 
 - Pros:
   - Can work quite well in cross-datacenter solution
