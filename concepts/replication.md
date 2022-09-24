@@ -33,46 +33,46 @@ Replication is having redundant copies of databases so that an application does 
 
 ## SINGLE LEADER REPLICATION
 
+Single leader replication is the process of having a single leader which gets writes and then passes those down to followers who replicate the data.
+
+Writes go to the leader, and reads come from any of the databases.
+
+We will also maintain a replication log which can be used for associations in adding followers or even failovers.
+
 ### ADDING A FOLLOWER
 
-Step 1: Intiialize the follower using a consistent snapshot of the leader database which is associated with some position in the replication log
+If we want to add a follower, we should take a snapshot of the leader database which is associated with some current position it has in the replication log.
 
-Step 2: The follower can now begin accepting changes from the leader
+Once the follower is online, it can begin accepting changes from the leader starting at the associated point in the replication log.
 
 ### DEALING WITH A FOLLOWER CRASH
 
 At time of crash, the follower knows where it was up to in the replication log
 
-Step 1: On reboot, fetch all of the new changes from the leader node
-
-Step 2: Start implementing the changes in the replication log from the index at which the follower node had previously failed
+On reboot, fetch all of the new changes from the leader node and then start implementing the changes in the replication log from the index at which the follower node had previously failed.
 
 ### DEALING WITH A LEADER CRASH (FAILOVER)
 
-Step 1: Determine a new leader via some source of consensus (perhaps the most up to date replica)
+Determine a new leader via some source of consensus such as the follower that is most up-to-date with the replication log.
 
-Step 2: Configure all clients to send writes to new leader
-
-Step 3: Configure all other followers to get changes from new leader
+Configure all clients to send writes to new leader and then configure all other followers to get changes from new leader. Also, make sure the leader won't attempt to take over leadership if it comes online.
 
 ### PROBLEMS WITH FAILOVER
 
 Some writes from the previous leader may have been propagated by only some or no replicas. This leads to either lost data or inconsistent replicas.
 
-We can also have accidental failovers due to network congestion which can hurt our data base performance even more.
+We can also have accidental failovers due to network congestion which can hurt our database performance even more.
 
 If the old leader comes back, we need to ensure that it does not think that it is the leader and continue to accept writes (resulting in a split brain).
 
 ### TYPES OF SINGLE-LEADER REPLICATION
 
 - Synchronous
-  - Client does not receive succss message until all replicas complete the write
-  - Strong consistency
-    Data is up to date, but writes take much longer
+  - Client does not receive success messages until all replicas complete the write
+  - Strong consistency with data being up to date but writes take much longer
 - Asyncronous
-  - Client receives success message the second that master completes the write
-  - Eventual consistency
-  - Writes much faster, but clients can make stale reads to a replica
+  - Client receives success message the second that the leader completes the write
+  - Eventual consistency where writes are much faster but clients can make stale reads to a replica
 
 ### REPLICATION LOG IMPLEMENTATION OPTIONS
 
@@ -81,7 +81,7 @@ If the old leader comes back, we need to ensure that it does not think that it i
 - Use internal write ahead log
   - Not scalable if changing database engine, says which bytes were changed, other databbase may have different data in different locations on disk
 - Use logical log
-  - Descrine which rows were modified and how, allows for more future proofing if the underlying databaxe engine changes in the future
+  - Descrine which rows were modified and how, allows for more future proofing if the underlying database engine changes in the future
 
 ### CONCLUSION - SINGLE LEADER REPLICATION
 
@@ -97,7 +97,7 @@ If the old leader comes back, we need to ensure that it does not think that it i
 
 The easiest way to deal with conflicts is to just avoid them. You do this by having all your writes to the same item go to a given leader.
 
-However, this is not always possible if the leader is down or you want to change your database configuration.
+However, this is not always possible if one of those leaders is down or you want to change your database configuration.
 
 ### LAST ONE WINS
 
@@ -144,9 +144,9 @@ Cons:
 
 ## LEADERLESS REPLICATION
 
-Writes go to all databases nodes in parallel.
+This approach abandons the concept of a leader and allows any replica to directly accept writes from clients. Amazon's Dynamo uses this. "Leaderless-style" is often called "Dynamo-style."
 
-Reads go to all database nodes in parallel.
+The client will directly send its writes to several
 
 ### KEEPING DATA UP TO DATE
 

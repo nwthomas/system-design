@@ -1,6 +1,8 @@
 # DATA PARTITIONING 💽
 
-Data partitioning is a technique to break up big database DBs into many smaller parts. It is the process of splitting up a DB/table across multiple machines to improve the manageability, performance, availability, and load balancing of an application. The justificiation for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers.
+Data partitioning is a technique to break up big database DBs into many smaller parts. It is the process of splitting up a DB/table across multiple machines to improve the manageability, performance, availability, and load balancing of an application. This is often used in conjunction with replication.
+
+The justificiation for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers.
 
 1. [Partitioning Methods](#partitioning-methods)
    - [Horizontal Partitioning](#horizontal-partitioning)
