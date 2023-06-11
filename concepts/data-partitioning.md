@@ -4,19 +4,29 @@ Data partitioning is a technique to break up big database DBs into many smaller 
 
 The justificiation for data partitioning is that, after a certain scale point, it is cheaper and more feasible to scale horizontally by adding more machines than to grow it vertically by adding beefier servers.
 
-1. [Partitioning Methods](#partitioning-methods)
+1. [Objectives of Partitioning](#objectives-of-partitioning)
+2. [Partitioning Methods](#partitioning-methods)
    - [Horizontal Partitioning](#horizontal-partitioning)
    - [Vertical Partitioning](#vertical-partitioning)
    - [Directory-based Partitioning](#directory-based-partitioning)
-2. [Partitioning Criteria](#partitioning-criteria)
+3. [Partitioning Criteria](#partitioning-criteria)
    - [Key (or List-based) Partitioning](#key-or-list-based-partitioning)
    - [List Partitioning](#list-partitioning)
    - [Round Robin Partitioning](#round-robin-partitioning)
    - [Composite Partitioning](#composite-partitioning)
-3. [Common Problems of Data Partitioning](#common-problems-of-data-partitioning)
+4. [Common Problems of Data Partitioning](#common-problems-of-data-partitioning)
    - [Joins and Denormalization](#joins-and-denormalization)
    - [Referential Integrity](#referential-integrity)
    - [Rebalancing](#rebalancing)
+
+## OBJECTIVES OF PARTITIONING
+
+We want:
+
+1. A similar amount of data on each node
+2. A similar amount of reads/writes on each node
+
+If we can't get this, we end up with hot spots.
 
 ## PARTITIONING METHODS
 
